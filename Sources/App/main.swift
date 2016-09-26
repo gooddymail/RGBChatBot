@@ -1,5 +1,7 @@
 import Vapor
+import VaporMySQL
 
+let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "chatbot")
 let drop = Droplet()
 
 drop.get { req in
