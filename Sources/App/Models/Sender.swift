@@ -13,24 +13,20 @@ import Fluent
 
 final class Sender: Model {
   var id: Node?
-  var name: String
   var fbID: String
   
-  init(name: String, fbID: String) {
-    self.name = name
+  init(fbID: String) {
     self.fbID = fbID
   }
   
   init(node: Node, in context: Context) throws {
     self.id = try node.extract("id")
-    self.name = try node.extract("name")
-    self.fbID = try node.extract("fbID")
+    self.fbID = try node.extract("fb_id")
   }
   
   public func makeNode(context: Context) throws -> Node {
     return try Node(node: [
         "id": id,
-        "name": name,
         "fbID": fbID
       ])
   }
@@ -38,8 +34,7 @@ final class Sender: Model {
   static func prepare(_ database: Database) throws {
     try database.create("senders") { senders in
       senders.id()
-      senders.string("name")
-      senders.string("fbID")
+      senders.string("fb_id")
     }
   }
   

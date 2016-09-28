@@ -18,14 +18,15 @@ final class Message: Model {
   var time: Int
   var senderID: Node?
   
-  init(message: String, time: Int) {
+  init(message: String, time: Int, senderID: Node?) {
     self.message = message
     self.time = time
+    self.senderID = senderID
   }
   
-  convenience init(message: String) {
+  convenience init(message: String, senderID: Node?) {
     let date = Date()
-    self.init(message: message, time: Int(date.timeIntervalSince1970))
+    self.init(message: message, time: Int(date.timeIntervalSince1970), senderID: senderID)
   }
   
   init(node: Node, in context: Context) throws {
@@ -49,6 +50,7 @@ final class Message: Model {
       messages.id()
       messages.string("message")
       messages.int("time")
+      messages.int("sender_id")
     }
   }
   
