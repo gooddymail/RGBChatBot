@@ -49,12 +49,35 @@ drop.post("webhook") { request in
   let (checked, senderID, action) = parseJSONMessage(request.data)
   
   guard checked == true else {
-    throw Abort.custom(status: .badRequest, message: "Fail to parse json message")
+    if let senderID = senderID {
+      sendTextMessage("Just a word plz!", toRecipientID: senderID)
+      return Response(status: .ok, body: "The request has succeeded.")
+    } else {
+      return Response(status: .badRequest, body: "Fail to parse json")
+    }
+  }
+  
+  let sender = try getSender(from: senderID!)
+  
+  switch action! {
+  case .message(let text):
+    print("recive message \"\(text)\"")
+    var message = Message(message: text, senderID: sender.id)
+    try message.save()
+  case .postback(let text):
+    print("recive post back")
   }
   
   sendCTPage(toRecipientID: senderID)
   
   return Response(status: .ok, body: "The request has succeeded.")
+}
+
+drop.get("sender", Sender.self, "messages") { request, sender in
+  
+  let messagesJSON = try sender.messages().all().makeNode().converted(to: JSON.self)
+  
+  return messagesJSON
 }
 
 drop.resource("posts", PostController())
