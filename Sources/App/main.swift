@@ -4,8 +4,8 @@ import HTTP
 
 //mysql://bd7c96252fff35:fd4bfab7@us-cdbr-iron-east-04.cleardb.net/heroku_591c3c553e41e64?reconnect=true
 
-//let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "chatbot")
-let mysql = try VaporMySQL.Provider(host: "us-cdbr-iron-east-04.cleardb.net", user: "bd7c96252fff35", password: "fd4bfab7", database: "heroku_591c3c553e41e64")
+let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "chatbot")
+//let mysql = try VaporMySQL.Provider(host: "us-cdbr-iron-east-04.cleardb.net", user: "bd7c96252fff35", password: "fd4bfab7", database: "heroku_591c3c553e41e64")
 let drop = Droplet(preparations: [Sender.self, Message.self], initializedProviders: [mysql])
 
 drop.get { req in

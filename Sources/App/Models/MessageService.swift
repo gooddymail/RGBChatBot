@@ -10,7 +10,7 @@ import Foundation
 import Vapor
 import HTTP
 
-let accessToken = "EAAWk3EyUa60BAK2BXg6vLZCUpxscMupNAiZAKHm4b0OuvuLGIfmSdHyEH7ZBAl58aZALZBBQ7WVTqtV8iGhAxRmkll9uGlyft5189uoD5Kyt8vmG9wZBiz4hh6HOZCys63BH3ffeZBus7RqYbk84bpPAJUtMEAIOLdAjRtfQkB07hAZDZD"
+let accessToken = "EAAWlKpmeq08BAEk0YES9nshToaWM95w7HGTtqVYzzKLbcMZACIJH1eVYr4qUMzm264fnr2JaLrItqbJT7Q9gARB6AkbDxDA1MQr6JhZCnGm2ADIof5eatPc9VpV3P0AZAFJGLZCkroNbFytSmdRQMPwMr1P6CrEcJdLFihLnIAZDZD"
 
 enum FacebookAction {
   case message(String)
@@ -127,7 +127,7 @@ func sendCTPage(toRecipientID: String?) {
   let id = ["id": recipentID]
   let elements = [["title":"Welcome to Creative talk\'s Page",
                    "item_url":"https://www.facebook.com/creativetalklive/",
-                   "image_url":"https://98cfaff1.ngrok.io/images/Cover.jpg",
+                   "image_url":"https://09188ffa.ngrok.io/images/Cover.jpg",
                    "subtitle":"Creative talk live by geng sitipong",
                    "buttons":[["type":"web_url",
                                "url":"https://www.facebook.com/creativetalklive/",
@@ -139,7 +139,7 @@ func sendCTPage(toRecipientID: String?) {
     ]
     ],["title":"Welcome to Creative talk\'s Page",
        "item_url":"https://www.facebook.com/creativetalklive/",
-       "image_url":"https://98cfaff1.ngrok.io/images/Cover.jpg",
+       "image_url":"https://09188ffa.ngrok.io/images/Cover.jpg",
        "subtitle":"Creative talk live by geng sitipong",
        "buttons":[["type":"web_url",
                    "url":"https://www.facebook.com/creativetalklive/",
