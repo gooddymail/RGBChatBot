@@ -4,8 +4,8 @@ import HTTP
 
 //mysql://bd7c96252fff35:fd4bfab7@us-cdbr-iron-east-04.cleardb.net/heroku_591c3c553e41e64?reconnect=true
 
-let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "chatbot")
-//let mysql = try VaporMySQL.Provider(host: "us-cdbr-iron-east-04.cleardb.net", user: "bd7c96252fff35", password: "fd4bfab7", database: "heroku_591c3c553e41e64")
+//let mysql = try VaporMySQL.Provider(host: "localhost", user: "root", password: "", database: "chatbot")
+let mysql = try VaporMySQL.Provider(host: "http://chatbot.rgb72.net", user: "chatbot", password: "oT926cN6bNm8D786", database: "chatbot")
 let drop = Droplet(preparations: [Sender.self, Message.self], initializedProviders: [mysql])
 
 drop.get { req in
@@ -13,6 +13,20 @@ drop.get { req in
     return try drop.view.make("welcome", [
     	"message": Node.string(drop.localization[lang, "welcome", "title"])
     ])
+}
+
+drop.post("linewebhook") { request in
+  let json = try JSON(bytes: request.body.bytes!)
+  print(json)
+  let (checked, userID, replyToken) = parseJSONMessageFromLine(json)
+  
+  guard checked == true else {
+    return Response(status: .badRequest, body: "Fail to parse json")
+  }
+  
+  sendCTPage(replyToken!)
+  
+  return Response(status: .ok, body: "accept")
 }
 
 drop.get("webhook") { request in

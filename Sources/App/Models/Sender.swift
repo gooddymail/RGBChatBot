@@ -10,6 +10,11 @@ import Foundation
 import Vapor
 import Fluent
 
+enum SenderProvider: String {
+  case facebook = "facebook"
+  case line = "line"
+}
+
 
 final class Sender: Model {
   var id: Node?
