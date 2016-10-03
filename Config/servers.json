@@ -1,7 +1,14 @@
 {
 	"default": {
-		"port": "$PORT:80",
+		"port": "$PORT:8080",
 		"host": "0.0.0.0",
-		"securityLayer": "tls"
+		"securityLayer": "tls",
+    "tls": {
+      "ca": "Certs/ChatbotCA.pem",
+      "cert": "Certs/server.cert",
+      "cipher": "compat",
+      "verifyCert": true,
+      "verifyHost": true
+    }
 	}
 }
